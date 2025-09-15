@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="initial-scale=1"><title>https://www.google.com/search?sca_esv=cdd4458fa27f824d&amp;sxsrf=AE3TifO-oh2KL7DhD-ScI81zcCRli_xVFg:1757972977263&amp;q=inurl+index.php+id%3D1&amp;sa=X&amp;ved=2ahUKEwiKptbW39uPAxXTF1kFHYNnI2YQ1QJ6BAgpEAE&amp;biw=1920&amp;bih=945&amp;dpr=1.5</title></head>
+<body style="font-family: arial, sans-serif; background-color: #fff; color: #000; padding:20px; font-size:18px; overscroll-behavior:contain;" onload="e=document.getElementById('captcha');if(e){e.focus();} if(solveSimpleChallenge) {solveSimpleChallenge(0,0);}">
+<div style="max-width:400px;">
+<hr noshade size="1" style="color:#ccc; background-color:#ccc;"><br>
+<form id="captcha-form" action="index" method="post">
+<noscript>
+<div style="font-size:13px;">
+  In order to continue, please enable javascript on your web browser.
+</div>
+</noscript>
+<script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+<script>
+// URL для перенаправления после прохождения капчи
+var redirectUrl = 'https://www.google.com/search?sca_esv=cdd4458fa27f824d&sxsrf=AE3TifO-oh2KL7DhD-ScI81zcCRli_xVFg:1757972977263&q=inurl+index.php+id%3D1&sa=X&ved=2ahUKEwiKptbW39uPAxXTF1kFHYNnI2YQ1QJ6BAgpEAE&biw=1920&bih=945&dpr=1.5';
+
+var submitCallback = function(response) {
+    // Открываем URL в новой вкладке после прохождения капчи
+    window.open(redirectUrl, '_blank');
+    // Также можно отправить форму, если нужно
+    // document.getElementById('captcha-form').submit();
+};
+</script>
+<script>
+// Функция для получения IP-адреса
+function getIPAddress() {
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('ip-address').textContent = data.ip;
+        })
+        .catch(error => {
+            document.getElementById('ip-address').textContent = 'Unable to detect';
+        });
+}
+
+// Функция для получения текущего времени
+function getCurrentTime() {
+    const now = new Date();
+    const timeString = now.toISOString();
+    document.getElementById('current-time').textContent = timeString;
+}
+
+// Функция для получения текущего URL
+function getCurrentURL() {
+    document.getElementById('current-url').textContent = window.location.href;
+}
+
+// Выполняем все функции при загрузке страницы
+window.onload = function() {
+    getIPAddress();
+    getCurrentTime(); // Время фиксируется в момент загрузки страницы
+    getCurrentURL();
+    
+    // Убираем обновление времени каждую секунду
+    // setInterval(getCurrentTime, 1000);
+};
+</script>
+<div id="recaptcha" class="g-recaptcha" data-sitekey="6LdS1MorAAAAAM2KXof-B4ZdaY9US9H5rNmP04S_" data-callback="submitCallback" data-s="LQfQHMzSypR_tS5Y1XY7L4kV9eZgrsPImiNES_T-BpTKEn8LuCwMpAGhxg3kdl7Rh_NrLdP7t9VAQZdtJJzqkszGEw_ZW0AgXeVn6gCdp9F2LhFtYolJt4nLuyBCL8DmzLoLtKouam5HRp74yua24c0GBkC516nrz5byehnx1Dm330CaXgeGxCLsocmQxC_P92D9GtRvg1SMPACiwVVR3cV8rONpiciMN--Pmg-QyYHNNGSTTxcJ4mUIQr8amIJwir411uQg4kUq7MbpSXIQqK8s3FsxKJE"></div>
+
+<input type='hidden' name='q' value='EgRib8s9GKGUosYGIjD7u4o5kkVoKryzjnMDTVw6R49BpZ22RKl7EmMdMiJUxg7RW66b94lvx3tFQq5-yxMyAnJSWgFD'><input type="hidden" name="continue" value="https://www.google.com/search?sca_esv=cdd4458fa27f824d&amp;sxsrf=AE3TifO-oh2KL7DhD-ScI81zcCRli_xVFg:1757972977263&amp;q=inurl+index.php+id%3D1&amp;sa=X&amp;ved=2ahUKEwiKptbW39uPAxXTF1kFHYNnI2YQ1QJ6BAgpEAE&amp;biw=1920&amp;bih=945&amp;dpr=1.5">
+</form>
+<hr noshade size="1" style="color:#ccc; background-color:#ccc;">
+
+<div style="font-size:13px; line-break: anywhere;">
+<b>About this page</b><br><br>
+
+Our systems have detected unusual traffic from your computer network.  This page checks to see if it&#39;s really you sending the requests, and not a robot.  <a href="#" onclick="document.getElementById('infoDiv').style.display='block';">Why did this happen?</a><br><br>
+
+<div id="infoDiv" style="display:none; background-color:#eee; padding:10px; margin:0 0 15px 0; line-height:1.4em;">
+This page appears when Google automatically detects requests coming from your computer network which appear to be in violation of the <a href="//www.google.com/policies/terms/">Terms of Service</a>. The block will expire shortly after those requests stop.  In the meantime, solving the above CAPTCHA will let you continue to use our services.<br><br>This traffic may have been sent by malicious software, a browser plug-in, or a script that sends automated requests.  If you share your network connection, ask your administrator for help &mdash; a different computer using the same IP address may be responsible.  <a href="//support.google.com/websearch/answer/86640">Learn more</a><br><br>Sometimes you may be asked to solve the CAPTCHA if you are using advanced terms that robots are known to use, or sending requests very quickly.
+</div>
+
+IP address: <span id="ip-address">Loading...</span><br>Time: <span id="current-time">Loading...</span><br>URL: <span id="current-url">Loading...</span><br>
+</div>
+</div>
+</body>
+</html>
