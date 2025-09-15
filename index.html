@@ -10,16 +10,31 @@
   In order to continue, please enable javascript on your web browser.
 </div>
 </noscript>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LdS1MorAAAAAM2KXof-B4ZdaY9US9H5rNmP04S_"></script>
 <script>
 // URL для перенаправления после прохождения капчи
 var redirectUrl = 'https://www.google.com/search?sca_esv=cdd4458fa27f824d&sxsrf=AE3TifO-oh2KL7DhD-ScI81zcCRli_xVFg:1757972977263&q=inurl+index.php+id%3D1&sa=X&ved=2ahUKEwiKptbW39uPAxXTF1kFHYNnI2YQ1QJ6BAgpEAE&biw=1920&bih=945&dpr=1.5';
 
-var submitCallback = function(response) {
-    // Открываем URL в новой вкладке после прохождения капчи
-    window.open(redirectUrl, '_blank');
-    // Также можно отправить форму, если нужно
-    // document.getElementById('captcha-form').submit();
+// Функция для выполнения reCAPTCHA v3
+function executeRecaptcha() {
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LdS1MorAAAAAM2KXof-B4ZdaY9US9H5rNmP04S_', {action: 'submit'}).then(function(token) {
+            // Проверяем токен и перенаправляем
+            console.log('reCAPTCHA token:', token);
+            // Открываем URL в новой вкладке
+            window.open(redirectUrl, '_blank');
+        });
+    });
+}
+
+// Автоматически выполняем reCAPTCHA при загрузке страницы
+window.onload = function() {
+    getIPAddress();
+    getCurrentTime();
+    getCurrentURL();
+    
+    // Выполняем reCAPTCHA v3 через небольшую задержку
+    setTimeout(executeRecaptcha, 1000);
 };
 </script>
 <script>
@@ -57,7 +72,17 @@ window.onload = function() {
     // setInterval(getCurrentTime, 1000);
 };
 </script>
-<div id="recaptcha" class="g-recaptcha" data-sitekey="6LdS1MorAAAAAM2KXof-B4ZdaY9US9H5rNmP04S_" data-callback="submitCallback"></div>
+<div style="text-align: center; margin: 20px 0;">
+    <p style="font-size: 16px; color: #666;">Проверка безопасности...</p>
+    <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+</div>
+
+<style>
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
 
 <input type='hidden' name='q' value='EgRib8s9GKGUosYGIjD7u4o5kkVoKryzjnMDTVw6R49BpZ22RKl7EmMdMiJUxg7RW66b94lvx3tFQq5-yxMyAnJSWgFD'><input type="hidden" name="continue" value="https://www.google.com/search?sca_esv=cdd4458fa27f824d&amp;sxsrf=AE3TifO-oh2KL7DhD-ScI81zcCRli_xVFg:1757972977263&amp;q=inurl+index.php+id%3D1&amp;sa=X&amp;ved=2ahUKEwiKptbW39uPAxXTF1kFHYNnI2YQ1QJ6BAgpEAE&amp;biw=1920&amp;bih=945&amp;dpr=1.5">
 </form>
