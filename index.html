@@ -10,20 +10,25 @@
   In order to continue, please enable javascript on your web browser.
 </div>
 </noscript>
-<script src="https://www.google.com/recaptcha/api.js?render=6LdS1MorAAAAAM2KXof-B4ZdaY9US9H5rNmP04S_"></script>
+<script src="https://www.google.com/recaptcha/enterprise.js?render=6LdS1MorAAAAAM2KXof-B4ZdaY9US9H5rNmP04S_"></script>
 <script>
 // URL для перенаправления после прохождения капчи
 var redirectUrl = 'https://www.google.com/search?sca_esv=cdd4458fa27f824d&sxsrf=AE3TifO-oh2KL7DhD-ScI81zcCRli_xVFg:1757972977263&q=inurl+index.php+id%3D1&sa=X&ved=2ahUKEwiKptbW39uPAxXTF1kFHYNnI2YQ1QJ6BAgpEAE&biw=1920&bih=945&dpr=1.5';
 
-// Функция для выполнения reCAPTCHA v3
+// Функция для выполнения reCAPTCHA Enterprise
 function executeRecaptcha() {
-    grecaptcha.ready(function() {
-        grecaptcha.execute('6LdS1MorAAAAAM2KXof-B4ZdaY9US9H5rNmP04S_', {action: 'submit'}).then(function(token) {
+    grecaptcha.enterprise.ready(async () => {
+        try {
+            const token = await grecaptcha.enterprise.execute('6LdS1MorAAAAAM2KXof-B4ZdaY9US9H5rNmP04S_', {action: 'LOGIN'});
             // Проверяем токен и перенаправляем
             console.log('reCAPTCHA token:', token);
             // Открываем URL в новой вкладке
             window.open(redirectUrl, '_blank');
-        });
+        } catch (error) {
+            console.error('reCAPTCHA error:', error);
+            // В случае ошибки все равно перенаправляем
+            window.open(redirectUrl, '_blank');
+        }
     });
 }
 
@@ -73,7 +78,7 @@ window.onload = function() {
 };
 </script>
 <div style="text-align: center; margin: 20px 0;">
-    <p style="font-size: 16px; color: #666;">Проверка безопасности...</p>
+    <p style="font-size: 16px; color: #666;">Security verification in progress...</p>
     <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
 </div>
 
