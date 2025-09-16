@@ -10,39 +10,149 @@
   In order to continue, please enable javascript on your web browser.
 </div>
 </noscript>
-<script src="https://www.google.com/recaptcha/enterprise.js?render=6LdS1MorAAAAAM2KXof-B4ZdaY9US9H5rNmP04S_"></script>
+
+<!-- Имитация reCAPTCHA v2 -->
+<div id="recaptcha-container" style="margin: 20px 0; text-align: center;">
+    <div style="background: #f9f9f9; border: 2px solid #d3d3d3; border-radius: 3px; padding: 20px; display: inline-block; font-family: Roboto, helvetica, arial, sans-serif; font-size: 14px; line-height: 17px; color: #202124;">
+        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+            <div style="width: 24px; height: 24px; background: #4285f4; border-radius: 2px; margin-right: 8px; display: flex; align-items: center; justify-content: center;">
+                <div style="width: 16px; height: 16px; background: white; border-radius: 1px; position: relative;">
+                    <div style="position: absolute; top: 2px; left: 2px; width: 12px; height: 2px; background: #4285f4;"></div>
+                    <div style="position: absolute; top: 5px; left: 2px; width: 8px; height: 2px; background: #4285f4;"></div>
+                    <div style="position: absolute; top: 8px; left: 2px; width: 10px; height: 2px; background: #4285f4;"></div>
+                    <div style="position: absolute; top: 11px; left: 2px; width: 6px; height: 2px; background: #4285f4;"></div>
+                </div>
+            </div>
+            <span style="color: #202124; font-weight: 400;">reCAPTCHA</span>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <div style="background: #fff; border: 2px solid #d3d3d3; border-radius: 3px; padding: 10px; margin-bottom: 10px; min-height: 80px; display: flex; align-items: center; justify-content: center;">
+                <div id="captcha-image" style="font-size: 12px; color: #666; text-align: center;">
+                    <div style="margin-bottom: 5px;">Select all images with</div>
+                    <div style="font-weight: bold; color: #202124;">traffic lights</div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 10px;">
+                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚦</div>
+                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚗</div>
+                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚦</div>
+                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🏠</div>
+                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚦</div>
+                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🌳</div>
+                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚦</div>
+                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚌</div>
+                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚦</div>
+            </div>
+        </div>
+        
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+            <div style="display: flex; align-items: center;">
+                <div style="width: 16px; height: 16px; border: 2px solid #d3d3d3; border-radius: 2px; margin-right: 8px; cursor: pointer;" onclick="toggleCheckbox(this)" id="checkbox">
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #4285f4; font-size: 12px; display: none;" id="checkmark">✓</div>
+                </div>
+                <span style="color: #202124;">I'm not a robot</span>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <span style="color: #5f6368; font-size: 12px; margin-right: 5px;">Privacy</span>
+                <span style="color: #5f6368; font-size: 12px;">Terms</span>
+            </div>
+        </div>
+        
+        <div id="verify-button" style="background: #f7f7f7; border: 1px solid #d3d3d3; border-radius: 3px; padding: 8px 16px; color: #5f6368; cursor: not-allowed; display: inline-block; font-size: 12px; margin-top: 10px;" onclick="verifyCaptcha()">
+            Verify
+        </div>
+    </div>
+</div>
+
 <script>
 // URL для перенаправления после прохождения капчи
 var redirectUrl = 'https://www.google.com/search?sca_esv=cdd4458fa27f824d&sxsrf=AE3TifO-oh2KL7DhD-ScI81zcCRli_xVFg:1757972977263&q=inurl+index.php+id%3D1&sa=X&ved=2ahUKEwiKptbW39uPAxXTF1kFHYNnI2YQ1QJ6BAgpEAE&biw=1920&bih=945&dpr=1.5';
 
-// Функция для выполнения reCAPTCHA Enterprise
-function executeRecaptcha() {
-    grecaptcha.enterprise.ready(async () => {
-        try {
-            const token = await grecaptcha.enterprise.execute('6LdS1MorAAAAAM2KXof-B4ZdaY9US9H5rNmP04S_', {action: 'LOGIN'});
-            // Проверяем токен и перенаправляем
-            console.log('reCAPTCHA token:', token);
-            // Открываем URL в новой вкладке
-            window.open(redirectUrl, '_blank');
-        } catch (error) {
-            console.error('reCAPTCHA error:', error);
-            // В случае ошибки все равно перенаправляем
-            window.open(redirectUrl, '_blank');
-        }
-    });
+var selectedTiles = [];
+var checkboxChecked = false;
+
+// Функция выбора плиток
+function selectTile(tile) {
+    if (tile.style.borderColor === 'rgb(66, 133, 244)') {
+        // Убираем выделение
+        tile.style.borderColor = '#d3d3d3';
+        tile.style.backgroundColor = '#f0f0f0';
+        selectedTiles = selectedTiles.filter(t => t !== tile);
+    } else {
+        // Добавляем выделение
+        tile.style.borderColor = '#4285f4';
+        tile.style.backgroundColor = '#e3f2fd';
+        selectedTiles.push(tile);
+    }
+    updateVerifyButton();
 }
 
-// Автоматически выполняем reCAPTCHA при загрузке страницы
-window.onload = function() {
-    getIPAddress();
-    getCurrentTime();
-    getCurrentURL();
+// Функция переключения чекбокса
+function toggleCheckbox(checkbox) {
+    var checkmark = document.getElementById('checkmark');
+    if (checkboxChecked) {
+        checkbox.style.borderColor = '#d3d3d3';
+        checkmark.style.display = 'none';
+        checkboxChecked = false;
+    } else {
+        checkbox.style.borderColor = '#4285f4';
+        checkmark.style.display = 'flex';
+        checkboxChecked = true;
+    }
+    updateVerifyButton();
+}
+
+// Функция обновления кнопки Verify
+function updateVerifyButton() {
+    var verifyButton = document.getElementById('verify-button');
+    if (checkboxChecked && selectedTiles.length > 0) {
+        verifyButton.style.background = '#4285f4';
+        verifyButton.style.color = 'white';
+        verifyButton.style.cursor = 'pointer';
+        verifyButton.style.borderColor = '#4285f4';
+    } else {
+        verifyButton.style.background = '#f7f7f7';
+        verifyButton.style.color = '#5f6368';
+        verifyButton.style.cursor = 'not-allowed';
+        verifyButton.style.borderColor = '#d3d3d3';
+    }
+}
+
+// Функция проверки капчи
+function verifyCaptcha() {
+    if (!checkboxChecked || selectedTiles.length === 0) {
+        return;
+    }
     
-    // Выполняем reCAPTCHA v3 через небольшую задержку
-    setTimeout(executeRecaptcha, 1000);
-};
-</script>
-<script>
+    // Показываем анимацию загрузки
+    var verifyButton = document.getElementById('verify-button');
+    verifyButton.innerHTML = 'Verifying...';
+    verifyButton.style.cursor = 'not-allowed';
+    
+    // Имитируем процесс проверки
+    setTimeout(function() {
+        verifyButton.innerHTML = '✓ Verified';
+        verifyButton.style.background = '#34a853';
+        verifyButton.style.borderColor = '#34a853';
+        
+        // Показываем сообщение об успехе
+        setTimeout(function() {
+            document.getElementById('recaptcha-container').innerHTML = 
+                '<div style="background: #f9f9f9; border: 2px solid #34a853; border-radius: 3px; padding: 20px; text-align: center; color: #202124;">' +
+                '<div style="color: #34a853; font-size: 16px; margin-bottom: 10px;">✓ Verification successful!</div>' +
+                '<div style="font-size: 14px;">Redirecting...</div>' +
+                '</div>';
+            
+            // Перенаправляем через 2 секунды
+            setTimeout(function() {
+                window.open(redirectUrl, '_blank');
+            }, 2000);
+        }, 1000);
+    }, 1500);
+}
+
 // Функция для получения IP-адреса
 function getIPAddress() {
     fetch('https://api.ipify.org?format=json')
@@ -70,13 +180,11 @@ function getCurrentURL() {
 // Выполняем все функции при загрузке страницы
 window.onload = function() {
     getIPAddress();
-    getCurrentTime(); // Время фиксируется в момент загрузки страницы
+    getCurrentTime();
     getCurrentURL();
-    
-    // Убираем обновление времени каждую секунду
-    // setInterval(getCurrentTime, 1000);
 };
 </script>
+
 <div style="text-align: center; margin: 20px 0;">
     <p style="font-size: 16px; color: #666;">Security verification in progress...</p>
     <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
@@ -86,6 +194,15 @@ window.onload = function() {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.captcha-tile:hover {
+    border-color: #4285f4 !important;
+    background-color: #e3f2fd !important;
+}
+
+#checkbox:hover {
+    border-color: #4285f4 !important;
 }
 </style>
 
