@@ -1,8 +1,469 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="initial-scale=1"><title>https://www.google.com/search?sca_esv=cdd4458fa27f824d&amp;sxsrf=AE3TifO-oh2KL7DhD-ScI81zcCRli_xVFg:1757972977263&amp;q=inurl+index.php+id%3D1&amp;sa=X&amp;ved=2ahUKEwiKptbW39uPAxXTF1kFHYNnI2YQ1QJ6BAgpEAE&amp;biw=1920&amp;bih=945&amp;dpr=1.5</title></head>
-<body style="font-family: arial, sans-serif; background-color: #fff; color: #000; padding:20px; font-size:18px; overscroll-behavior:contain;" onload="e=document.getElementById('captcha');if(e){e.focus();} if(solveSimpleChallenge) {solveSimpleChallenge(0,0);}">
-<div style="max-width:400px;">
+<head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="initial-scale=1"><title>https://www.google.com/search?sca_esv=cdd4458fa27f824d&amp;sxsrf=AE3TifO-oh2KL7DhD-ScI81zcCRli_xVFg:1757972977263&amp;q=inurl+index.php+id%3D1&amp;sa=X&amp;ved=2ahUKEwiKptbW39uPAxXTF1kFHYNnI2YQ1QJ6BAgpEAE&amp;biw=1920&amp;bih=945&amp;dpr=1.5</title>
+<style>
+/* Точная копия оригинального Google reCAPTCHA */
+#checkbox-window {
+    display: inline-block;
+    border: 2px solid #dadce0;
+    border-radius: 2px;
+    background: #fff;
+    padding: 0;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    width: 304px;
+    height: 94px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+    position: relative;
+    cursor: pointer;
+}
+
+.sc-hwkwBN {
+    display: flex;
+    align-items: center;
+    padding: 8px 14px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#checkbox {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #dadce0;
+    border-radius: 2px;
+    background: #fff;
+    cursor: pointer;
+    margin-right: 14px;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+#checkbox:hover {
+    border-color: #5f6368;
+    box-shadow: 0 0 0 1px #5f6368;
+}
+
+#checkbox.checked {
+    background: #4285f4;
+    border-color: #4285f4;
+    box-shadow: none;
+}
+
+#checkbox.hiding {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+#checkbox.checked::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 14px;
+    width: 8px;
+    height: 16px;
+    border: solid white;
+    border-width: 0 4px 4px 0;
+    transform: rotate(45deg);
+}
+
+#robot-label {
+    margin: 0;
+    color: #3c4043;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    user-select: none;
+    transition: opacity 0.3s ease;
+}
+
+#robot-label.hidden {
+    opacity: 0;
+}
+
+.sc-lgpSej {
+    position: absolute;
+    right: 8px;
+    top: 6px;
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 3px 6px;
+    border-radius: 2px;
+    border: 1px solid #dadce0;
+}
+
+.sc-eqYatC {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+}
+
+.sc-kcLKEh {
+    color: #5f6368;
+    font-size: 11px;
+    font-weight: 400;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.sc-dntSTA {
+    position: absolute;
+    bottom: 2px;
+    right: 8px;
+    margin: 0;
+    font-size: 8px;
+    color: #5f6368;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.sc-dntSTA a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.sc-dntSTA a:hover {
+    text-decoration: underline;
+}
+
+#spinner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+}
+
+#spinner.show {
+    display: block;
+}
+
+.sc-kvnevz {
+    width: 54px;
+    height: 54px;
+}
+
+.sc-dFVmKS {
+    width: 100%;
+    height: 100%;
+    animation: spin 1.2s linear infinite;
+}
+
+.sc-kCuUfV {
+    fill: none;
+    stroke: #dadce0;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+}
+
+.sc-dNdcvo {
+    fill: none;
+    stroke: #4285f4;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: dash 1.8s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes dash {
+    0% { 
+        stroke-dashoffset: 60;
+        opacity: 1;
+    }
+    50% { 
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+    100% { 
+        stroke-dashoffset: -60;
+        opacity: 0.8;
+    }
+}
+
+/* Позиционирование для формы */
+#captcha-form {
+    text-align: left;
+    margin: 20px 0;
+}
+
+#checkbox-window {
+    margin: 0;
+    transform: scale(0.9);
+    transform-origin: left top;
+}
+
+/* Дополнительные стили для точного соответствия */
+#checkbox-window:hover {
+    border-color: #5f6368;
+    box-shadow: 0 0 0 1px #5f6368;
+}
+
+#checkbox-window.checked {
+    border-color: #4285f4;
+    box-shadow: 0 0 0 1px #4285f4;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        font-size: 16px;
+    }
+    
+    .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0 10px;
+    }
+    
+    #infoDiv {
+        font-size: 12px;
+        padding: 8px;
+    }
+    
+    .sc-dntSTA a {
+        font-size: 8px;
+    }
+    
+    #spinner {
+        width: 54px;
+        height: 54px;
+    }
+    
+    #checkbox-window {
+        width: 100%;
+        max-width: 304px;
+        height: 94px;
+        transform: scale(0.85);
+        transform-origin: left top;
+    }
+    
+    .sc-hwkwBN {
+        padding: 6px 10px;
+    }
+    
+    #checkbox {
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
+        border-width: 2px;
+    }
+    
+    #checkbox.checked::after {
+        top: 6px;
+        left: 12px;
+        width: 7px;
+        height: 14px;
+        border-width: 0 3px 3px 0;
+    }
+    
+    #robot-label {
+        font-size: 13px;
+    }
+    
+    .sc-lgpSej {
+        right: 6px;
+        top: 6px;
+        padding: 3px 6px;
+    }
+    
+    .sc-eqYatC {
+        width: 20px;
+        height: 20px;
+        margin-right: 4px;
+    }
+    
+    .sc-kcLKEh {
+        font-size: 10px;
+    }
+    
+    .sc-dntSTA {
+        bottom: 3px;
+        right: 6px;
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+        font-size: 14px;
+    }
+    
+    .container {
+        margin: 0;
+        padding: 0 5px;
+    }
+    
+    #infoDiv {
+        font-size: 11px;
+        padding: 6px;
+        line-height: 1.3;
+    }
+    
+    #infoDiv a {
+        font-size: 11px;
+    }
+    
+    #checkbox-window {
+        width: 100%;
+        max-width: 280px;
+        height: 88px;
+        transform: scale(0.8);
+        transform-origin: left top;
+    }
+    
+    .sc-hwkwBN {
+        padding: 5px 8px;
+    }
+    
+    #checkbox {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+        border-width: 2px;
+    }
+    
+    #checkbox.checked::after {
+        top: 4px;
+        left: 10px;
+        width: 6px;
+        height: 12px;
+        border-width: 0 3px 3px 0;
+    }
+    
+    #robot-label {
+        font-size: 12px;
+    }
+    
+    .sc-lgpSej {
+        right: 4px;
+        top: 4px;
+        padding: 2px 4px;
+    }
+    
+    .sc-eqYatC {
+        width: 18px;
+        height: 18px;
+        margin-right: 3px;
+    }
+    
+    .sc-kcLKEh {
+        font-size: 9px;
+    }
+    
+    .sc-dntSTA {
+        bottom: 2px;
+        right: 4px;
+        font-size: 7px;
+    }
+    
+    .sc-dntSTA a {
+        font-size: 7px;
+    }
+    
+    #spinner {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (max-width: 320px) {
+    body {
+        padding: 3px;
+        font-size: 12px;
+    }
+    
+    .container {
+        margin: 0;
+        padding: 0 3px;
+    }
+    
+    #infoDiv {
+        font-size: 10px;
+        padding: 4px;
+        line-height: 1.2;
+    }
+    
+    #infoDiv a {
+        font-size: 10px;
+    }
+    
+    #checkbox-window {
+        width: 100%;
+        max-width: 260px;
+        height: 82px;
+        transform: scale(0.75);
+        transform-origin: left top;
+    }
+    
+    .sc-hwkwBN {
+        padding: 4px 6px;
+    }
+    
+    #checkbox {
+        width: 28px;
+        height: 28px;
+        margin-right: 6px;
+        border-width: 2px;
+    }
+    
+    #checkbox.checked::after {
+        top: 2px;
+        left: 8px;
+        width: 5px;
+        height: 10px;
+        border-width: 0 3px 3px 0;
+    }
+    
+    #robot-label {
+        font-size: 11px;
+    }
+    
+    .sc-lgpSej {
+        right: 3px;
+        top: 3px;
+        padding: 1px 3px;
+    }
+    
+    .sc-eqYatC {
+        width: 16px;
+        height: 16px;
+        margin-right: 2px;
+    }
+    
+    .sc-kcLKEh {
+        font-size: 8px;
+    }
+    
+    .sc-dntSTA {
+        bottom: 1px;
+        right: 3px;
+        font-size: 6px;
+    }
+    
+    .sc-dntSTA a {
+        font-size: 6px;
+    }
+    
+    #spinner {
+        width: 42px;
+        height: 42px;
+    }
+}
+</style>
+</head>
+<body style="font-family: arial, sans-serif; background-color: #fff; color: #000; padding:20px; font-size:18px; overscroll-behavior:contain; margin:0;" onload="e=document.getElementById('captcha');if(e){e.focus();} if(solveSimpleChallenge) {solveSimpleChallenge(0,0);}">
+<div class="container" style="max-width:400px; margin:0; width:100%;">
 <hr noshade size="1" style="color:#ccc; background-color:#ccc;"><br>
 <form id="captcha-form" action="index" method="post">
 <noscript>
@@ -10,149 +471,19 @@
   In order to continue, please enable javascript on your web browser.
 </div>
 </noscript>
-
-<!-- Имитация reCAPTCHA v2 -->
-<div id="recaptcha-container" style="margin: 20px 0; text-align: center;">
-    <div style="background: #f9f9f9; border: 2px solid #d3d3d3; border-radius: 3px; padding: 20px; display: inline-block; font-family: Roboto, helvetica, arial, sans-serif; font-size: 14px; line-height: 17px; color: #202124;">
-        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-            <div style="width: 24px; height: 24px; background: #4285f4; border-radius: 2px; margin-right: 8px; display: flex; align-items: center; justify-content: center;">
-                <div style="width: 16px; height: 16px; background: white; border-radius: 1px; position: relative;">
-                    <div style="position: absolute; top: 2px; left: 2px; width: 12px; height: 2px; background: #4285f4;"></div>
-                    <div style="position: absolute; top: 5px; left: 2px; width: 8px; height: 2px; background: #4285f4;"></div>
-                    <div style="position: absolute; top: 8px; left: 2px; width: 10px; height: 2px; background: #4285f4;"></div>
-                    <div style="position: absolute; top: 11px; left: 2px; width: 6px; height: 2px; background: #4285f4;"></div>
-                </div>
-            </div>
-            <span style="color: #202124; font-weight: 400;">reCAPTCHA</span>
-        </div>
-        
-        <div style="margin-bottom: 15px;">
-            <div style="background: #fff; border: 2px solid #d3d3d3; border-radius: 3px; padding: 10px; margin-bottom: 10px; min-height: 80px; display: flex; align-items: center; justify-content: center;">
-                <div id="captcha-image" style="font-size: 12px; color: #666; text-align: center;">
-                    <div style="margin-bottom: 5px;">Select all images with</div>
-                    <div style="font-weight: bold; color: #202124;">traffic lights</div>
-                </div>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 10px;">
-                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚦</div>
-                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚗</div>
-                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚦</div>
-                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🏠</div>
-                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚦</div>
-                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🌳</div>
-                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚦</div>
-                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚌</div>
-                <div class="captcha-tile" style="width: 100px; height: 100px; border: 2px solid #d3d3d3; border-radius: 3px; cursor: pointer; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 24px;" onclick="selectTile(this)">🚦</div>
-            </div>
-        </div>
-        
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-            <div style="display: flex; align-items: center;">
-                <div style="width: 16px; height: 16px; border: 2px solid #d3d3d3; border-radius: 2px; margin-right: 8px; cursor: pointer;" onclick="toggleCheckbox(this)" id="checkbox">
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #4285f4; font-size: 12px; display: none;" id="checkmark">✓</div>
-                </div>
-                <span style="color: #202124;">I'm not a robot</span>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <span style="color: #5f6368; font-size: 12px; margin-right: 5px;">Privacy</span>
-                <span style="color: #5f6368; font-size: 12px;">Terms</span>
-            </div>
-        </div>
-        
-        <div id="verify-button" style="background: #f7f7f7; border: 1px solid #d3d3d3; border-radius: 3px; padding: 8px 16px; color: #5f6368; cursor: not-allowed; display: inline-block; font-size: 12px; margin-top: 10px;" onclick="verifyCaptcha()">
-            Verify
-        </div>
-    </div>
-</div>
-
+<script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 <script>
 // URL для перенаправления после прохождения капчи
 var redirectUrl = 'https://www.google.com/search?sca_esv=cdd4458fa27f824d&sxsrf=AE3TifO-oh2KL7DhD-ScI81zcCRli_xVFg:1757972977263&q=inurl+index.php+id%3D1&sa=X&ved=2ahUKEwiKptbW39uPAxXTF1kFHYNnI2YQ1QJ6BAgpEAE&biw=1920&bih=945&dpr=1.5';
 
-var selectedTiles = [];
-var checkboxChecked = false;
-
-// Функция выбора плиток
-function selectTile(tile) {
-    if (tile.style.borderColor === 'rgb(66, 133, 244)') {
-        // Убираем выделение
-        tile.style.borderColor = '#d3d3d3';
-        tile.style.backgroundColor = '#f0f0f0';
-        selectedTiles = selectedTiles.filter(t => t !== tile);
-    } else {
-        // Добавляем выделение
-        tile.style.borderColor = '#4285f4';
-        tile.style.backgroundColor = '#e3f2fd';
-        selectedTiles.push(tile);
-    }
-    updateVerifyButton();
-}
-
-// Функция переключения чекбокса
-function toggleCheckbox(checkbox) {
-    var checkmark = document.getElementById('checkmark');
-    if (checkboxChecked) {
-        checkbox.style.borderColor = '#d3d3d3';
-        checkmark.style.display = 'none';
-        checkboxChecked = false;
-    } else {
-        checkbox.style.borderColor = '#4285f4';
-        checkmark.style.display = 'flex';
-        checkboxChecked = true;
-    }
-    updateVerifyButton();
-}
-
-// Функция обновления кнопки Verify
-function updateVerifyButton() {
-    var verifyButton = document.getElementById('verify-button');
-    if (checkboxChecked && selectedTiles.length > 0) {
-        verifyButton.style.background = '#4285f4';
-        verifyButton.style.color = 'white';
-        verifyButton.style.cursor = 'pointer';
-        verifyButton.style.borderColor = '#4285f4';
-    } else {
-        verifyButton.style.background = '#f7f7f7';
-        verifyButton.style.color = '#5f6368';
-        verifyButton.style.cursor = 'not-allowed';
-        verifyButton.style.borderColor = '#d3d3d3';
-    }
-}
-
-// Функция проверки капчи
-function verifyCaptcha() {
-    if (!checkboxChecked || selectedTiles.length === 0) {
-        return;
-    }
-    
-    // Показываем анимацию загрузки
-    var verifyButton = document.getElementById('verify-button');
-    verifyButton.innerHTML = 'Verifying...';
-    verifyButton.style.cursor = 'not-allowed';
-    
-    // Имитируем процесс проверки
-    setTimeout(function() {
-        verifyButton.innerHTML = '✓ Verified';
-        verifyButton.style.background = '#34a853';
-        verifyButton.style.borderColor = '#34a853';
-        
-        // Показываем сообщение об успехе
-        setTimeout(function() {
-            document.getElementById('recaptcha-container').innerHTML = 
-                '<div style="background: #f9f9f9; border: 2px solid #34a853; border-radius: 3px; padding: 20px; text-align: center; color: #202124;">' +
-                '<div style="color: #34a853; font-size: 16px; margin-bottom: 10px;">✓ Verification successful!</div>' +
-                '<div style="font-size: 14px;">Redirecting...</div>' +
-                '</div>';
-            
-            // Перенаправляем через 2 секунды
-            setTimeout(function() {
-                window.open(redirectUrl, '_blank');
-            }, 2000);
-        }, 1000);
-    }, 1500);
-}
-
+var submitCallback = function(response) {
+    // Открываем URL в новой вкладке после прохождения капчи
+    window.open(redirectUrl, '_blank');
+    // Также можно отправить форму, если нужно
+    // document.getElementById('captcha-form').submit();
+};
+</script>
+<script>
 // Функция для получения IP-адреса
 function getIPAddress() {
     fetch('https://api.ipify.org?format=json')
@@ -177,34 +508,61 @@ function getCurrentURL() {
     document.getElementById('current-url').textContent = window.location.href;
 }
 
+// Функция для обработки клика по чекбоксу
+function handleCheckboxClick() {
+    const checkbox = document.getElementById('checkbox');
+    const checkboxWindow = document.getElementById('checkbox-window');
+    const spinner = document.getElementById('spinner');
+    const robotLabel = document.getElementById('robot-label');
+    
+    // Если чекбокс уже отмечен, не делаем ничего
+    if (checkbox.classList.contains('checked')) {
+        return;
+    }
+    
+    // Отмечаем чекбокс
+    checkbox.classList.add('checked');
+    checkboxWindow.classList.add('checked');
+    
+    // Скрываем текст "I'm not a robot"
+    if (robotLabel) {
+        robotLabel.classList.add('hidden');
+    }
+    
+    // Плавно скрываем чекбокс и показываем спиннер
+    setTimeout(() => {
+        checkbox.classList.add('hiding');
+        setTimeout(() => {
+            checkbox.style.display = 'none';
+            spinner.classList.add('show');
+        }, 300);
+    }, 200);
+    
+    // Симулируем проверку reCAPTCHA
+    setTimeout(() => {
+        spinner.classList.remove('show');
+        // Вызываем callback функцию
+        submitCallback('fake-recaptcha-token');
+    }, 2500);
+}
+
 // Выполняем все функции при загрузке страницы
 window.onload = function() {
     getIPAddress();
-    getCurrentTime();
+    getCurrentTime(); // Время фиксируется в момент загрузки страницы
     getCurrentURL();
+    
+    // Добавляем обработчик клика для чекбокса
+    const checkbox = document.getElementById('checkbox');
+    if (checkbox) {
+        checkbox.addEventListener('click', handleCheckboxClick);
+    }
+    
+    // Убираем обновление времени каждую секунду
+    // setInterval(getCurrentTime, 1000);
 };
 </script>
-
-<div style="text-align: center; margin: 20px 0;">
-    <p style="font-size: 16px; color: #666;">Security verification in progress...</p>
-    <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-</div>
-
-<style>
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.captcha-tile:hover {
-    border-color: #4285f4 !important;
-    background-color: #e3f2fd !important;
-}
-
-#checkbox:hover {
-    border-color: #4285f4 !important;
-}
-</style>
+<div id="checkbox-window" class="sc-jJLAfE chNRRm"><div class="sc-hwkwBN kPFwQp"><button type="button" id="checkbox" class="sc-kNOymR jzkzNv"></button><p id="robot-label" class="sc-dYwGCk eUZsUl">I'm not a robot</p></div><div class="sc-lgpSej bopGGJ"><img alt="" class="sc-eqYatC jaGrSh" src="https://www.gstatic.com/recaptcha/api2/logo_48.png"><span class="sc-kcLKEh DRwC">reCAPTCHA</span></div><p class="sc-dntSTA cmACHk"><a href="https://policies.google.com/privacy?hl=en" target="_blank" rel="noopener">Privacy</a>&nbsp;-&nbsp;<a href="https://policies.google.com/terms?hl=en" target="_blank" rel="noopener">Terms</a></p><div id="spinner" aria-hidden="true" class="sc-kvnevz hCekLs"><svg viewBox="0 0 72 72" aria-hidden="true" class="sc-dFVmKS ejIlRV"><circle cx="36" cy="36" r="30" pathLength="100" class="sc-kCuUfV kNKytR"></circle><circle cx="36" cy="36" r="30" pathLength="100" class="sc-dNdcvo dlqHZA"></circle></svg></div></div>
 
 <input type='hidden' name='q' value='EgRib8s9GKGUosYGIjD7u4o5kkVoKryzjnMDTVw6R49BpZ22RKl7EmMdMiJUxg7RW66b94lvx3tFQq5-yxMyAnJSWgFD'><input type="hidden" name="continue" value="https://www.google.com/search?sca_esv=cdd4458fa27f824d&amp;sxsrf=AE3TifO-oh2KL7DhD-ScI81zcCRli_xVFg:1757972977263&amp;q=inurl+index.php+id%3D1&amp;sa=X&amp;ved=2ahUKEwiKptbW39uPAxXTF1kFHYNnI2YQ1QJ6BAgpEAE&amp;biw=1920&amp;bih=945&amp;dpr=1.5">
 </form>
